@@ -8,13 +8,16 @@ import WeatherData from './components/WeatherData';
 const API_ROOT = 'https://api.openweathermap.org/data/2.5';
 
 function App(): JSX.Element {
-  const [location, setLocation] = useState('Szigetvár');
+  const [location, setLocation] = useState('');
+  console.log(location);
 
   const {
     data: weatherData,
     isLoading,
     isError,
   } = useFetchWeatherData(API_ROOT, location);
+
+  console.log(weatherData);
 
   return (
     <div className="App">
@@ -23,8 +26,8 @@ function App(): JSX.Element {
           <h1>Weather Application</h1>
         </header>
         <Navbar />
-        <Location />
-        <WeatherData weatherData={weatherData} />
+        <Location setLocation={setLocation} location={location} />
+        <WeatherData weatherData={weatherData} isLoading={isLoading} />
       </div>
     </div>
   );

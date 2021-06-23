@@ -171,6 +171,9 @@ input:checked[type='checkbox']::before {
   margin: 5px;
   opacity: 0.5;
 }
+.location-text {
+  text-transform: capitalize;
+}
 /******
 **WEATHER DATA
 ** *****/
