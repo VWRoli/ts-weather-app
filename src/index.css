@@ -196,3 +196,6 @@ input:checked[type='checkbox']::before {
 .data-group:nth-child(3) {
   border-right: var(--border);
 }
+.description-data {
+  text-transform: capitalize;
+}
