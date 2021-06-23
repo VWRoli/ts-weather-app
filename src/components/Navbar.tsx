@@ -1,9 +1,10 @@
 import React from 'react';
+import Greeting from './Greeting';
 
 const Navbar = (): JSX.Element => {
   return (
     <nav>
-      <h2>Good morning!</h2>
+      <Greeting />
       <div className="controls">
         <div>
           Language: <button className="link-btn">Eng</button>

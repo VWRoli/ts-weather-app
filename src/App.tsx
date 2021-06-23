@@ -8,7 +8,7 @@ import WeatherData from './components/WeatherData';
 const API_ROOT = 'https://api.openweathermap.org/data/2.5';
 
 function App(): JSX.Element {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState('szigetvár');
   console.log(location);
 
   const {
