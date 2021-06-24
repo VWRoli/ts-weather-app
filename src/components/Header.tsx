@@ -2,7 +2,7 @@ import { useThemeContext } from '../context/themeContext';
 import { english } from '../languages/english';
 import { hungarian } from '../languages/hungarian';
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const { darkTheme, setDisplayLanguage, displayLanguage } = useThemeContext();
 
   return (
