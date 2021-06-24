@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { LocationType } from '../App';
 
 export interface DataType {
   weatherData: {
@@ -6,23 +7,32 @@ export interface DataType {
     feelsLike: number;
     description: string;
     icon: string;
+    city: string;
   } | null;
 }
 
-export const useFetchWeatherData = (url: string, location: string) => {
+export const useFetchWeatherData = (url: string, location: LocationType) => {
   //Loading state
   const [isLoading, setIsLoading] = useState(true);
   //Error state
   const [isError, setIsError] = useState(false);
 
-  const [data, setData] = useState<DataType['weatherData'] | null>(null);
+  const [data, setData] = useState<DataType['weatherData']>(null);
+
+  let completeApiUrl: string;
+
+  if (typeof location === 'object') {
+    completeApiUrl = `${url}/weather?lat=${location?.latitude}&lon=${location?.longitude}&appid=${process.env.REACT_APP_API_SECRET}&units=metric`;
+  } else {
+    completeApiUrl = `${url}/weather?q=${location}&appid=${process.env.REACT_APP_API_SECRET}&units=metric`;
+  }
 
   const fetchData = useCallback(async () => {
+    if (!location) return;
     setIsLoading(true);
+    setIsError(false);
     try {
-      const response = await fetch(
-        `${url}/weather?q=${location}&appid=${process.env.REACT_APP_API_SECRET}&units=metric`
-      );
+      const response = await fetch(completeApiUrl);
       const data = await response.json();
 
       const weatherData = {
@@ -30,6 +40,7 @@ export const useFetchWeatherData = (url: string, location: string) => {
         feelsLike: data.main.feels_like,
         description: data.weather[0].description,
         icon: data.weather[0].icon,
+        city: data.name,
       };
 
       setData(weatherData);

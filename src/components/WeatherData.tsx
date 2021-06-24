@@ -4,16 +4,20 @@ import { useThemeContext } from '../context/themeContext';
 
 interface Props {
   isLoading: boolean;
+  isError: boolean;
   weatherData: DataType['weatherData'];
 }
 
 const WeatherData: React.FC<Props> = ({
   weatherData,
   isLoading,
+  isError,
 }): JSX.Element => {
   const { displayLanguage } = useThemeContext();
 
-  if (isLoading) return <p>{displayLanguage.loading}</p>;
+  if (isLoading) return <p className="message">{displayLanguage.loading}</p>;
+
+  if (isError) return <p className="message">{displayLanguage.errorMsg}</p>;
 
   return (
     <article className="weather-data-wrapper">

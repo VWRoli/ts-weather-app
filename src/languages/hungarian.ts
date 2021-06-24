@@ -19,4 +19,6 @@ export const hungarian: LanguageType = {
   themeButton: 'Sötét mód:',
   themeButtonAutoOption: 'Auto',
   themeButtonMaunalOption: 'Manuális',
+  errorMsg:
+    'Valami hiba történt, ellenőrizd a megadott város nevet, vagy próbálkozz újra később...',
 };

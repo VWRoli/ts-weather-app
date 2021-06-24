@@ -235,6 +235,10 @@ input:checked[type='checkbox']::before {
 .description-data {
   text-transform: capitalize;
 }
+.message {
+  text-align: center;
+  margin: 2rem 0;
+}
 
 /******
 **DARK THEME

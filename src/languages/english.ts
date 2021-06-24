@@ -19,4 +19,6 @@ export const english: LanguageType = {
   themeButton: 'Dark Mode:',
   themeButtonAutoOption: 'Auto',
   themeButtonMaunalOption: 'Manual',
+  errorMsg:
+    'Something went wrong, check if the city you entered is valid or please try again later...',
 };

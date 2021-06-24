@@ -17,4 +17,5 @@ export type LanguageType = {
   themeButton: string;
   themeButtonAutoOption: string;
   themeButtonMaunalOption: string;
+  errorMsg: string;
 };

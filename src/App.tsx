@@ -6,17 +6,24 @@ import Header from './components/Header';
 import Location from './components/Location';
 import Navbar from './components/Navbar';
 import WeatherData from './components/WeatherData';
-import useCurrentLocation from './hooks/useCurrentlocation';
+import useCurrentLocation, {
+  CurrentLocationType,
+} from './hooks/useCurrentlocation';
 
 const API_ROOT = 'https://api.openweathermap.org/data/2.5';
+
+export type LocationType = CurrentLocationType | string;
 
 function App(): JSX.Element {
   const { darkTheme } = useThemeContext();
 
   const { currentLocation, error } = useCurrentLocation();
-  console.log(currentLocation);
 
-  const [location, setLocation] = useState('Szigetvár');
+  const [location, setLocation] = useState<LocationType>(null);
+
+  useEffect(() => {
+    setLocation(currentLocation);
+  }, [currentLocation]);
 
   const {
     data: weatherData,
@@ -29,8 +36,12 @@ function App(): JSX.Element {
       <div className="container">
         <Header />
         <Navbar />
-        <Location setLocation={setLocation} location={location} />
-        <WeatherData weatherData={weatherData} isLoading={isLoading} />
+        <Location setLocation={setLocation} weatherData={weatherData} />
+        <WeatherData
+          weatherData={weatherData}
+          isLoading={isLoading}
+          isError={isError}
+        />
       </div>
     </div>
   );
