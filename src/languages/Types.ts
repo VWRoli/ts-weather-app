@@ -1,0 +1,20 @@
+export type LanguageType = {
+  headerTitle: string;
+  engButton: string;
+  hunButton: string;
+  morningWelcomeMessage: string;
+  afternoonWelcomeMessage: string;
+  eveningWelcomeMessage: string;
+  darkButton: string;
+  lightButton: string;
+  locationTitle: string;
+  searchLabel: string;
+  searchButton: string;
+  tempTitle: string;
+  feelsLikeTitle: string;
+  descriptionTitle: string;
+  loading: string;
+  themeButton: string;
+  themeButtonAutoOption: string;
+  themeButtonMaunalOption: string;
+};

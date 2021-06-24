@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useThemeContext } from '../context/themeContext';
 
 interface Props {
   setLocation: React.Dispatch<React.SetStateAction<string>>;
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const Location: React.FC<Props> = ({ setLocation, location }): JSX.Element => {
+  const { darkTheme, displayLanguage } = useThemeContext();
   const [query, setQuery] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
@@ -16,11 +18,12 @@ const Location: React.FC<Props> = ({ setLocation, location }): JSX.Element => {
 
   return (
     <section>
-      <h3>
-        Current Weather Data: <span className="location-text">{location}</span>
+      <h3 className="location-title">
+        {displayLanguage.locationTitle}{' '}
+        <span className="location-text">{location}</span>
       </h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="query">Enter a city name:</label>
+        <label htmlFor="query">{displayLanguage.searchLabel}</label>
         <input
           type="text"
           name="query"
@@ -30,7 +33,9 @@ const Location: React.FC<Props> = ({ setLocation, location }): JSX.Element => {
             setQuery(e.target.value)
           }
         />
-        <button className="primary-btn">Search</button>
+        <button className={darkTheme ? 'primary-btn dark-btn' : 'primary-btn'}>
+          {displayLanguage.searchButton}
+        </button>
       </form>
     </section>
   );

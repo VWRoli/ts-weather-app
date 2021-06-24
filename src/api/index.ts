@@ -18,7 +18,6 @@ export const useFetchWeatherData = (url: string, location: string) => {
   const [data, setData] = useState<DataType['weatherData'] | null>(null);
 
   const fetchData = useCallback(async () => {
-    console.log('fetchData');
     setIsLoading(true);
     try {
       const response = await fetch(

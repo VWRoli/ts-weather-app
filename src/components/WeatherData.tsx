@@ -1,5 +1,6 @@
 import React from 'react';
 import { DataType } from '../api';
+import { useThemeContext } from '../context/themeContext';
 
 interface Props {
   isLoading: boolean;
@@ -10,11 +11,15 @@ const WeatherData: React.FC<Props> = ({
   weatherData,
   isLoading,
 }): JSX.Element => {
-  if (isLoading) return <p>Loading...</p>;
+  const { displayLanguage } = useThemeContext();
+
+  if (isLoading) return <p>{displayLanguage.loading}</p>;
+
   return (
     <article className="weather-data-wrapper">
       <div className="data-group">
-        <h4>Temperature:</h4> <p>{weatherData?.temperature}</p>
+        <h4>{displayLanguage.tempTitle}</h4>
+        <p>{weatherData?.temperature} &#8451;</p>
       </div>
       <div className="data-group">
         <img
@@ -23,10 +28,11 @@ const WeatherData: React.FC<Props> = ({
         />
       </div>
       <div className="data-group">
-        <h4>Feels like:</h4> <p>{weatherData?.feelsLike}</p>
+        <h4>{displayLanguage.feelsLikeTitle}</h4>{' '}
+        <p>{weatherData?.feelsLike} &#8451;</p>
       </div>
       <div className="data-group">
-        <h4>Description:</h4>
+        <h4>{displayLanguage.descriptionTitle}</h4>
         <p className="description-data">{weatherData?.description}</p>
       </div>
     </article>

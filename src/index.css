@@ -2,10 +2,11 @@
 **VARIABLES
 ** *****/
 :root {
-  --dark-text-clr: #222;
+  --dark-text-clr: #0d215a;
   --border: 1px solid rgba(255, 255, 255, 0.4);
   --hover-clr: #fff;
   --box-shadow: 0 5px 45px rgba(0, 0, 0, 0.1);
+  --accent-clr: #237dd1;
 }
 
 /******
@@ -90,8 +91,13 @@ h4 {
   place-content: center;
   min-height: 100vh;
   color: var(--dark-text-clr);
-  background: linear-gradient(to bottom, #ff4f8b, #dff1ff);
+  background: linear-gradient(217deg, #a8b9db, rgba(255, 0, 0, 0) 70.71%),
+    linear-gradient(127deg, #c0d8d4, rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(198deg, #bce5d8, rgba(0, 0, 255, 0) 70.71%),
+    linear-gradient(336deg, #aececf, rgba(0, 0, 255, 0) 70.71%);
+  transition: all 0.5s;
 }
+
 .container {
   min-width: 50vw;
   padding: 1.5rem;
@@ -107,9 +113,18 @@ h4 {
 ** *****/
 header {
   border-bottom: var(--border);
+  position: relative;
 }
 header h1 {
   margin: 0.5rem 0;
+}
+.select-lang {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.active-lang {
+  color: var(--accent-clr);
 }
 /******
 **NAVBAR
@@ -164,6 +179,7 @@ input:checked[type='checkbox']::before {
 /******
 **LOCATION
 ** *****/
+
 .location-input {
   border: var(--border);
   border-radius: 10px;
@@ -174,20 +190,35 @@ input:checked[type='checkbox']::before {
 .location-text {
   text-transform: capitalize;
 }
+.location-title {
+  padding: 1rem 0.5rem;
+  border-radius: 15px;
+  border: var(--border);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--box-shadow);
+  backdrop-filter: invert(10%);
+}
+
 /******
 **WEATHER DATA
 ** *****/
+
 .weather-data-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: 1fr;
   grid-gap: 1px;
   align-items: center;
+  margin-top: 1rem;
 }
 .data-group {
   text-align: center;
-
   min-height: 104px;
+}
+.data-group p {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 .data-group:nth-child(1) {
   border-bottom: var(--border);
@@ -201,4 +232,19 @@ input:checked[type='checkbox']::before {
 }
 .description-data {
   text-transform: capitalize;
+}
+
+/******
+**DARK THEME
+** *****/
+
+.dark-theme {
+  color: #fff;
+  background: linear-gradient(217deg, #363636, rgba(255, 0, 0, 0) 70.71%),
+    linear-gradient(127deg, #283946, rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(198deg, #011627, rgba(0, 0, 255, 0) 70.71%),
+    linear-gradient(336deg, #01484c, rgba(0, 0, 255, 0) 70.71%);
+}
+.dark-btn {
+  color: #fff;
 }
