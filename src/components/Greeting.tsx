@@ -1,7 +1,7 @@
-import { useThemeContext } from '../context/themeContext';
+import { useSettingsContext } from '../context/settingsContext';
 
 const Greeting = (): JSX.Element => {
-  const { displayLanguage } = useThemeContext();
+  const { displayLanguage } = useSettingsContext();
   const hour = new Date().getHours();
 
   if (hour > 7 && hour < 12)

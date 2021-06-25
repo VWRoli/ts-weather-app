@@ -2,22 +2,27 @@ import { useState, useEffect, useCallback } from 'react';
 import { LocationType } from '../App';
 
 export interface DataType {
-  weatherData: {
+  data: {
     temperature: number;
     feelsLike: number;
     description: string;
     icon: string;
     city: string;
   } | null;
+  isLoading: boolean;
+  isError: boolean;
 }
 
-export const useFetchWeatherData = (url: string, location: LocationType) => {
+export const useFetchWeatherData = (
+  url: string,
+  location: LocationType
+): DataType => {
   //Loading state
   const [isLoading, setIsLoading] = useState(true);
   //Error state
   const [isError, setIsError] = useState(false);
 
-  const [data, setData] = useState<DataType['weatherData']>(null);
+  const [data, setData] = useState<DataType['data']>(null);
 
   let completeApiUrl: string;
 
@@ -51,7 +56,7 @@ export const useFetchWeatherData = (url: string, location: LocationType) => {
       setIsLoading(false);
       setIsError(true);
     }
-  }, [url, location]);
+  }, [location, completeApiUrl]);
   useEffect(() => {
     fetchData();
   }, [url, fetchData]);

@@ -16,14 +16,14 @@ const defaultValue: ContextType = {
   setDisplayLanguage: () => {},
 };
 
-const ThemeContext = React.createContext(defaultValue);
+const SettingsContext = React.createContext(defaultValue);
 
-export const ThemeProvider: FC = ({ children }) => {
+export const SettingsProvider: FC = ({ children }) => {
   const [displayLanguage, setDisplayLanguage] = useState(english);
   const [darkTheme, setDarkTheme] = useState(false);
 
   return (
-    <ThemeContext.Provider
+    <SettingsContext.Provider
       value={{
         darkTheme,
         setDarkTheme,
@@ -31,10 +31,10 @@ export const ThemeProvider: FC = ({ children }) => {
         setDisplayLanguage,
       }}>
       {children}
-    </ThemeContext.Provider>
+    </SettingsContext.Provider>
   );
 };
 
-export const useThemeContext = () => {
-  return useContext(ThemeContext);
+export const useSettingsContext = () => {
+  return useContext(SettingsContext);
 };

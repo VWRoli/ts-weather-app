@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { DataType } from '../api';
 import { LocationType } from '../App';
-import { useThemeContext } from '../context/themeContext';
+import { useSettingsContext } from '../context/settingsContext';
 
 interface Props {
   setLocation: React.Dispatch<React.SetStateAction<LocationType>>;
-  weatherData: DataType['weatherData'];
+  data: DataType['data'];
 }
 
 const Location: React.FC<Props> = ({
   setLocation,
-  weatherData,
+  data: weatherData,
 }): JSX.Element => {
-  const { darkTheme, displayLanguage } = useThemeContext();
+  const { darkTheme, displayLanguage } = useSettingsContext();
   const [query, setQuery] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {

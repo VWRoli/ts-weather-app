@@ -46,6 +46,9 @@
 .primary-btn:hover::before {
   transform: skewX(45deg) translateX(-100px);
 }
+.active-btn {
+  backdrop-filter: invert(15%);
+}
 
 /******
 **GLOBAL
@@ -123,9 +126,7 @@ header h1 {
   top: 0;
   right: 0;
 }
-.active-lang {
-  color: var(--accent-clr);
-}
+
 /******
 **NAVBAR
 ** *****/
@@ -140,6 +141,13 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.controls div {
+  display: flex;
+  align-items: center;
+}
+.controls div input {
+  margin: 0 0.5rem;
 }
 
 /******
@@ -159,7 +167,7 @@ input[type='checkbox'] {
   cursor: pointer;
 }
 input:checked[type='checkbox'] {
-  background: #ffcb03;
+  background: var(--accent-clr);
 }
 input[type='checkbox']::before {
   content: '';
@@ -193,13 +201,24 @@ input:checked[type='checkbox']::before {
   text-transform: capitalize;
 }
 .location-title {
+  position: relative;
   padding: 1rem 0.5rem;
   border-radius: 15px;
   border: var(--border);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: var(--box-shadow);
-  backdrop-filter: invert(10%);
+}
+.location-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(45deg) translateX(-75px);
+  transition: 0.5s;
 }
 
 /******

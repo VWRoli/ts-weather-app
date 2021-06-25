@@ -1,19 +1,13 @@
 import React from 'react';
 import { DataType } from '../api';
-import { useThemeContext } from '../context/themeContext';
+import { useSettingsContext } from '../context/settingsContext';
 
-interface Props {
-  isLoading: boolean;
-  isError: boolean;
-  weatherData: DataType['weatherData'];
-}
-
-const WeatherData: React.FC<Props> = ({
-  weatherData,
+const WeatherData: React.FC<DataType> = ({
+  data: weatherData,
   isLoading,
   isError,
 }): JSX.Element => {
-  const { displayLanguage } = useThemeContext();
+  const { displayLanguage } = useSettingsContext();
 
   if (isLoading) return <p className="message">{displayLanguage.loading}</p>;
 

@@ -1,3 +1,25 @@
+# Weather Application with typescript
+
+To start the application, clone this repo to your computer. Install all the dependencies `npm i`. Create a .env file in the root folder, and get your own API key from [Open Weather](https://openweathermap.org/api). Insert your api key into the .env file. "REACT_APP_API_SECRET=[your API key]"
+
+After that you are ready to go with `npm start`
+
+## Timetable
+
+- 15min Understanding the task and get to know the API
+- 25min Set up basic App layout
+- 1h25min Set up basic static design
+- 1h Set up API call and handle incoming data
+- 25min Search functionality
+- 10min Time based welcome message
+- 1h40min Usecontext, dark theme
+- 1h Multilang feature
+- 40min Manual and auto theme option
+- 3h15m Get user location and user weather data
+- 1h30m Refactor and fix some minor issues, imporve design
+
+Overall: ~11h30m
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

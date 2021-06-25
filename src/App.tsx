@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useFetchWeatherData } from './api';
-import { useThemeContext } from './context/themeContext';
+import { useSettingsContext } from './context/settingsContext';
 //Components
 import Header from './components/Header';
 import Location from './components/Location';
@@ -15,9 +15,10 @@ const API_ROOT = 'https://api.openweathermap.org/data/2.5';
 export type LocationType = CurrentLocationType | string;
 
 function App(): JSX.Element {
-  const { darkTheme } = useThemeContext();
+  const { darkTheme } = useSettingsContext();
 
   const { currentLocation, error } = useCurrentLocation();
+  if (error) alert(error);
 
   const [location, setLocation] = useState<LocationType>(null);
 
@@ -25,23 +26,15 @@ function App(): JSX.Element {
     setLocation(currentLocation);
   }, [currentLocation]);
 
-  const {
-    data: weatherData,
-    isLoading,
-    isError,
-  } = useFetchWeatherData(API_ROOT, location);
+  const { data, isLoading, isError } = useFetchWeatherData(API_ROOT, location);
 
   return (
     <div className={darkTheme ? 'App dark-theme' : 'App'}>
       <div className="container">
         <Header />
         <Navbar />
-        <Location setLocation={setLocation} weatherData={weatherData} />
-        <WeatherData
-          weatherData={weatherData}
-          isLoading={isLoading}
-          isError={isError}
-        />
+        <Location setLocation={setLocation} data={data} />
+        <WeatherData data={data} isLoading={isLoading} isError={isError} />
       </div>
     </div>
   );

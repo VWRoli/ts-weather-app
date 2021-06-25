@@ -1,9 +1,24 @@
-import { useThemeContext } from '../context/themeContext';
+import { useState } from 'react';
+import { useSettingsContext } from '../context/settingsContext';
 import { english } from '../languages/english';
 import { hungarian } from '../languages/hungarian';
 
 const Header = (): JSX.Element => {
-  const { darkTheme, setDisplayLanguage, displayLanguage } = useThemeContext();
+  const { darkTheme, setDisplayLanguage, displayLanguage } =
+    useSettingsContext();
+
+  const [isActive, setIsActive] = useState(true);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const clicked = e.currentTarget.dataset.lang;
+    if (clicked === 'eng') {
+      setDisplayLanguage(english);
+      setIsActive(true);
+    } else {
+      setDisplayLanguage(hungarian);
+      setIsActive(false);
+    }
+  };
 
   return (
     <header>
@@ -11,12 +26,15 @@ const Header = (): JSX.Element => {
       <div className="select-lang">
         <button
           className={darkTheme ? 'link-btn dark-btn' : 'link-btn'}
-          onClick={() => setDisplayLanguage(english)}>
+          onClick={handleClick}
+          data-lang="eng"
+          style={{ color: isActive ? '#237dd1' : '' }}>
           {displayLanguage.engButton}
         </button>
         <button
           className={darkTheme ? 'link-btn dark-btn' : 'link-btn'}
-          onClick={() => setDisplayLanguage(hungarian)}>
+          onClick={handleClick}
+          style={{ color: !isActive ? '#237dd1' : '' }}>
           {displayLanguage.hunButton}
         </button>
       </div>
