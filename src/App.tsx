@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useFetchWeatherData } from './api';
 import { useSettingsContext } from './context/settingsContext';
-//Components
-import Header from './components/Header';
-import Location from './components/Location';
-import Navbar from './components/Navbar';
-import WeatherData from './components/WeatherData';
 import useCurrentLocation, {
   CurrentLocationType,
 } from './hooks/useCurrentlocation';
+//Components
+import Header from './components/Header/Header';
+import Location from './components/Location';
+import Navbar from './components/Navbar/Navbar';
+import WeatherData from './components/WeatherData/WeatherData';
+import Message from './components/Message';
 
 const API_ROOT = 'https://api.openweathermap.org/data/2.5';
 
@@ -18,7 +19,6 @@ function App(): JSX.Element {
   const { darkTheme } = useSettingsContext();
 
   const { currentLocation, error } = useCurrentLocation();
-  if (error) alert(error);
 
   const [location, setLocation] = useState<LocationType>(null);
 
@@ -30,11 +30,15 @@ function App(): JSX.Element {
 
   return (
     <div className={darkTheme ? 'App dark-theme' : 'App'}>
-      <div className="container">
+      <div className="container box-container">
         <Header />
         <Navbar />
-        <Location setLocation={setLocation} data={data} />
-        <WeatherData data={data} isLoading={isLoading} isError={isError} />
+        <Location setLocation={setLocation} data={data} isLoading={isLoading} />
+        {error ? (
+          <Message message={error} isError={true} />
+        ) : (
+          <WeatherData data={data} isLoading={isLoading} isError={isError} />
+        )}
       </div>
     </div>
   );

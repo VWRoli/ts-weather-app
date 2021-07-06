@@ -17,8 +17,9 @@ After that you are ready to go with `npm start`
 - 40min Manual and auto theme option
 - 3h15m Get user location and user weather data
 - 1h30m Refactor and fix some minor issues, imporve design
+- 3h30m Additional improvements fixes
 
-Overall: ~11h30m
+Overall: ~15h
 
 # Getting Started with Create React App
 

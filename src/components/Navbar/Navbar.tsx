@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useSettingsContext } from '../context/settingsContext';
+import { useSettingsContext } from '../../context/settingsContext';
+import checkDayHours from '../../helpers/checkDayHours';
+//Components
 import Greeting from './Greeting';
+import ThemeBtn from './ThemeBtn';
 
 const Navbar = (): JSX.Element => {
   const { darkTheme, setDarkTheme, displayLanguage } = useSettingsContext();
   const [autoTheme, setAutoTheme] = useState(true);
-  const hour = new Date().getHours();
 
   useEffect(() => {
     if (autoTheme) {
-      if (hour > 7 && hour < 18) setDarkTheme(false);
+      if (checkDayHours(7, 18)) setDarkTheme(false);
       else setDarkTheme(true);
     }
-  }, [hour, autoTheme]);
+  }, [autoTheme, setDarkTheme]);
 
   return (
     <nav>
@@ -30,20 +32,16 @@ const Navbar = (): JSX.Element => {
         </div>
         {autoTheme || (
           <div>
-            <button
-              className={
-                darkTheme ? 'primary-btn dark-btn active-btn' : 'primary-btn'
-              }
-              onClick={() => setDarkTheme(true)}>
-              {displayLanguage.darkButton}
-            </button>
-            <button
-              className={
-                darkTheme ? 'primary-btn dark-btn' : 'primary-btn active-btn'
-              }
-              onClick={() => setDarkTheme(false)}>
-              {displayLanguage.lightButton}
-            </button>
+            <ThemeBtn
+              text={displayLanguage.darkButton}
+              isDark={true}
+              isActive={darkTheme}
+            />
+            <ThemeBtn
+              text={displayLanguage.lightButton}
+              isDark={false}
+              isActive={!darkTheme}
+            />
           </div>
         )}
       </div>
